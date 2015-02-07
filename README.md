@@ -1,4 +1,6 @@
 # mithril-isomorphic-example
+
+[![Join the chat at https://gitter.im/StephanHoyer/mithril-isomorphic-example](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/StephanHoyer/mithril-isomorphic-example?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 This is an example of an express-based isomorphic mithril application.
 
 It utilizes the architecture descibed in [this](https://gist.github.com/StephanHoyer/bddccd9e159828867d2a) post. It can be used as a starting point for you isomorphic mithril-based application.
