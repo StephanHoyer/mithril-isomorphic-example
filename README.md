@@ -34,10 +34,10 @@ The app sets up an REST-server for providing the data. For conveniance we set up
 
 The store supports four actions:
 
-`store.load(type, id)` - fetches one model of given type by id - results in `GET`-request
-`store.loadWhere(type, options)` - fetches a collection of models of given type - results in `GET`-request
-`store.save(model)` - saves (creates/updatea) a model - results in `POST/PUT`-request
-`store.destroy(model)` - deletes a model - results in `DELETE`-request
+* `store.load(type, id)` - fetches one model of given type by id - results in `GET`-request
+* `store.loadWhere(type, options)` - fetches a collection of models of given type - results in `GET`-request
+* `store.save(model)` - saves (creates/updatea) a model - results in `POST/PUT`-request
+* `store.destroy(model)` - deletes a model - results in `DELETE`-request
 
 models should have a `type` property to use the correct route.
 
@@ -47,13 +47,15 @@ models should have a `type` property to use the correct route.
 
 The app contains a basic REST-API based on `express`. It talks to the backend version of the `store`. The API of the backend and frontend `store` should be identical at any time.
 
-The API id bound to the base route `api/v1/`. This can of cause be changed in the `server/web.js`. The routes of the models are related to the `types` of the models:
+The API is bound to the base route `api/v1/`. This can of cause be changed in the `server/web.js`. The routes of the models are related to the `type`-property of the models:
 
 e. G. `/api/v1/user/123` fetches and returns the user with `id = 123`.
 
 ## store
 
-The server version of `store` has the same API as the client version. However, it requires resources to fetch from. These are defined in the `/server/resources.js`. Currently there is only one resource defined. For this resource currently only the `get-by-id` is defined. In a real application you should add your ORM/ODM in this place. As you might spot the store requires promises in order to work.
+The server version of `store` has the same API as the client version. However, it requires resources to fetch from. These are defined in the `/server/resources.js`. Currently there is only one resource defined. For this resource currently only the `get-by-id` is defined. The resources should be an object where the keys refert to the appropriate `model.type`-property. 
+
+In a real application you should add your ORM/ODM in this place. As you might spot the store requires promises in order to work.
 
 # conclusion
 
