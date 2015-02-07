@@ -7,12 +7,13 @@ function controller() {
 
 function view() {
   return [
-    m('h1', 'mithril-isomorphic-example'),
-    m('p', 'yes, it works'),
+    m.trust('<!-- Server side rendering \\o/ -->'),
+    m('h1', 'Ohh, another page'),
+    m('p', 'try to realod and look to the response'),
     m('a', {
-      href: '/second-page',
+      href: '/',
       config: m.route
-    }, 'second page')
+    }, 'back to home page')
   ];
 }
 
