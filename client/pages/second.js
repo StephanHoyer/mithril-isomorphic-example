@@ -1,7 +1,7 @@
 'use strict';
 
 var m = require('mithril');
-var store = require('../store');
+var store = require('../../store');
 
 function controller(params, done) {
   var scope = {};
