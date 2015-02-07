@@ -7,7 +7,7 @@ It utilizes the architecture descibed in [this](https://gist.github.com/StephanH
 
 ## frontend
 
-It's a pretty standard mithril application. For packaging und dependencies we use [browserify]. The routes are defined in the `routes.js`. We added two routes for demonstration.
+It's a pretty standard mithril application. For packaging und dependencies we use [browserify](http://browserify.org/). The routes are defined in the `routes.js`. We added two routes for demonstration.
 
 There are two specialities you have to take care: 
 
@@ -47,13 +47,13 @@ models should have a `type` property to use the correct route.
 
 The app contains a basic REST-API based on `express`. It talks to the backend version of the `store`. The API of the backend and frontend `store` should be identical at any time.
 
-The API is bound to the base route `api/v1/`. This can of cause be changed in the `server/web.js`. The routes of the models are related to the `type`-property of the models:
+The API is bound to the base route `api/v1/`. This can of cause be changed in the `server/web.js` (also change it on the client side in `store/client.js`). The routes of the models are related to the `type`-property of the models:
 
 e. G. `/api/v1/user/123` fetches and returns the user with `id = 123`.
 
 ## store
 
-The server version of `store` has the same API as the client version. However, it requires resources to fetch from. These are defined in the `/server/resources.js`. Currently there is only one resource defined. For this resource currently only the `get-by-id` is defined. The resources should be an object where the keys refert to the appropriate `model.type`-property. 
+The server version of `store` has the same API as the client version. However, it requires resources to fetch from. These are defined in the `/server/resources.js`. Currently there is only one resource defined. For this resource currently only the `get-by-id` is defined. The resources should be an object where the keys refer to the appropriate `model.type`-property. 
 
 In a real application you should add your ORM/ODM in this place. As you might spot the store requires promises in order to work.
 
