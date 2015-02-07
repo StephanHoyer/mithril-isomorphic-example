@@ -9,8 +9,11 @@ function load(type, id) {
   return resources[type].get(id);
 }
 
-function loadWhere(type, where) {
-  return resources[type].query({where: where});
+function loadWhere(type, query) {
+  if (!resources[type]) {
+    throw Error('Resource with type "' + type + '" does not exist');
+  }
+  return resources[type].query(query);
 }
 
 function remove(model) {
@@ -21,6 +24,9 @@ function remove(model) {
 }
 
 function save(model) {
+  if (!model.type) {
+    throw new Error('model has no type, save not possible');
+  }
   return resources[model.type].save(model);
 }
 
