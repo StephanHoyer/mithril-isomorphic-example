@@ -46,7 +46,7 @@ models should have a `type` property to use the correct route.
 
 ## backend
 
-## REST-API
+### REST-API
 
 The app contains a basic REST-API based on `express`. It talks to the backend version of the `store`. The API of the backend and frontend `store` should be identical at any time.
 
@@ -54,7 +54,7 @@ The API is bound to the base route `api/v1/`. This can of cause be changed in th
 
 e. G. `/api/v1/user/123` fetches and returns the user with `id = 123`.
 
-## store
+### store
 
 The server version of `store` has the same API as the client version. However, it requires resources to fetch from. These are defined in the `/server/resources.js`. Currently there is only one resource defined. For this resource currently only the `get-by-id` is defined. The resources should be an object where the keys refer to the appropriate `model.type`-property. 
 
