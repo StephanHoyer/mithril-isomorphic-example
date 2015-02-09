@@ -28,7 +28,7 @@ each(routes, function(module, route) {
     res.type('html');
     function send(scope) {
       res.end(base(render(module.view(scope))));
-      scope && scope.unonload && scope.onunload();
+      scope && scope.onunload && scope.onunload();
     }
     if (module.controller.length < 2) { //sync, response imedeatly
       return send(module.controller(req.params));
