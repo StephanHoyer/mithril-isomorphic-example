@@ -6,6 +6,15 @@ This is an example of an express-based isomorphic mithril application.
 
 It utilizes the architecture descibed in [this](https://gist.github.com/StephanHoyer/bddccd9e159828867d2a) post. It can be used as a starting point for you isomorphic mithril-based application.
 
+# usage
+
+1. Clone the repo
+2. `cd` into it
+3. run `npm install`
+4. run `node server`
+
+If you want to run it in production mode (JS minification) just run `NODE_ENV=production node server`
+
 # components
 
 ## frontend
