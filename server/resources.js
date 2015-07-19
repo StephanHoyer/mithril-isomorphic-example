@@ -12,5 +12,7 @@ module.exports = {
         });
       });
     }
-  }
+  },
+
+  mbtaRoutes: require('./resources/mbtaRoutes')
 };
