@@ -2,7 +2,7 @@
 
 var express = require('express');
 var routes = require('../client/routes');
-var each = require('lodash').each;
+var _ = require('lodash');
 var render = require('mithril-node-render');
 
 var app = express();
@@ -23,7 +23,7 @@ function base(content) {
   ].join('');
 }
 
-each(routes, function(module, route) {
+_.each(routes, function(module, route) {
   app.get(route, function(req, res, next) {
     res.type('html');
     function send(scope) {

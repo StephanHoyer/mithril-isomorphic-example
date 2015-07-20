@@ -9,6 +9,11 @@ function controller(params, done) {
     scope.myDog = dog;
     done && done(null, scope);
   });
+
+  store.loadWhere('mbtaRoutes').then(function(mbtaRoutes) {
+    console.log('received response');
+  });
+
   return scope;
 }
 
@@ -16,7 +21,7 @@ function view(scope) {
   return [
     m.trust('<!-- Server side rendering \\o/ -->'),
     m('h1', 'Ohh, another page'),
-    m('p', 'try to realod and look to the response'),
+    m('p', 'try to reload and look to the response'),
     m('a', {
       href: '/',
       config: m.route

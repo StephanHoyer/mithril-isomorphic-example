@@ -16,12 +16,20 @@
     "es6-promise": "^2.0.1",
     "express": "^4.11.0",
     "lodash": "^2.4.1",
+    "jasmine-node": "1.14.5",
     "mithril": "^0.1.28",
     "mithril-node-render": "^0.1.7",
-    "promise": "^6.1.0"
+    "promise": "^6.1.0",
+    "request": "2.58.0",
+    "nock": "2.7.0",
+    "morgan": "latest"
   },
   "devDependencies": {
     "brfs": "^1.2.0",
     "browserify": "^8.1.1"
+  },
+  "scripts": {
+    "pretest": "npm install",
+    "test": "jasmine-node --autotest spec/ --watch ./server/ ./store/"
   }
 }

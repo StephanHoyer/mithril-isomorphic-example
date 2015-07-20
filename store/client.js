@@ -56,7 +56,7 @@ function loadWhere(type, query) {
   if (!type) {
     throw new Error('no type provided to load model');
   }
-  
+
   return m.request({
     method: 'GET',
     url: apiUrl(type),
