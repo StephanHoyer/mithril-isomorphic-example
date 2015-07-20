@@ -22,19 +22,16 @@ module.exports = {
 
     return new Promise(function(resolve, reject) {
       fs.exists(path, function(fileExists) {
-        if (false) {
-          console.log('here');
+        if (fileExists) {
           fs.readFile(path, 'utf-8', function(err, data){
             err ? reject(err) : resolve(data);
           });
         } else {
-          console.log('requesting');
           request.get('routes').on('data', function (chunk) {
-            console.log('heresda');
             data += chunk;
           }).on('end', function (response) {
             resolve(data);
-          }).pipe(fs.createWriteStream(path + pathSuffix));
+          });
         }
       })
     });
