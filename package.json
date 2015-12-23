@@ -18,7 +18,7 @@
     "lodash": "^2.4.1",
     "mithril": "^0.2.0",
     "mithril-node-render": "^0.4.1",
-    "promise": "^6.1.0"
+    "promise": "^7.1.1"
   },
   "devDependencies": {
     "brfs": "^1.2.0",
