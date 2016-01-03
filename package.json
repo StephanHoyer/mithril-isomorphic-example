@@ -17,7 +17,7 @@
     "express": "^4.11.0",
     "lodash": "^2.4.1",
     "mithril": "^0.2.0",
-    "mithril-node-render": "^0.4.1",
+    "mithril-node-render": "^0.4.2",
     "promise": "^6.1.0"
   },
   "devDependencies": {
