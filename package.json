@@ -21,7 +21,7 @@
     "promise": "^6.1.0"
   },
   "devDependencies": {
-    "brfs": "^1.2.0",
+    "brfs": "^1.4.3",
     "browserify": "^8.1.1"
   }
 }
