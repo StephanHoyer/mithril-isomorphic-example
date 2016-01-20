@@ -11,7 +11,7 @@
   "dependencies": {
     "body-parser": "^1.10.1",
     "browserify-middleware": "^4.1.0",
-    "compression": "^1.3.0",
+    "compression": "^1.6.1",
     "domready": "^1.0.7",
     "es6-promise": "^2.0.1",
     "express": "^4.11.0",
