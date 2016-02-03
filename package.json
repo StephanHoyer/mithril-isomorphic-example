@@ -15,7 +15,7 @@
     "domready": "^1.0.7",
     "es6-promise": "^2.0.1",
     "express": "^4.11.0",
-    "lodash": "^2.4.1",
+    "lodash": "^4.2.1",
     "mithril": "^0.2.0",
     "mithril-node-render": "^0.4.2",
     "promise": "^6.1.0"
