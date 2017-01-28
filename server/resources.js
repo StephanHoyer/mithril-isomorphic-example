@@ -1,16 +1,12 @@
-'use strict';
-
-var Promise = require('promise');
+'use strict'
 
 module.exports = {
   dog: {
-    get: function(id) {
-      return new Promise(function(resolve) {
-        resolve({
-          id: id,
-          name: 'Dolly'
-        });
-      });
+    get: function (id) {
+      return Promise.resolve(id === '0' ? null : {
+        id: id,
+        name: 'Dolly'
+      })
     }
   }
-};
+}

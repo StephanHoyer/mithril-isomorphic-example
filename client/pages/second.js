@@ -1,31 +1,41 @@
-'use strict';
+'use strict'
 
-var m = require('mithril');
-var store = require('../../store');
+var m = require('mithril')
+var store = require('../../store')
 
-function controller(params, done) {
-  var scope = {};
-  store.load('dog', 123).then(function(dog) {
-    scope.myDog = dog;
-    done && done(null, scope);
-  });
-  return scope;
+var dogInfo = {
+  type: 'cat',
+  oninit: function (vnode) {
+    vnode.state.myDog = vnode.attrs.myDog
+  },
+  view: function (vnode) {
+    var myDog = vnode.state.myDog
+    return m('p', myDog && ('My ' + vnode.state.type + 's name is ' + myDog.name + '(' + myDog.id + ')'))
+  }
 }
 
-function view(scope) {
+function oninit (vnode) {
+  return store.load('dog', vnode.attrs.id).then(function (dog) {
+    vnode.state.myDog = dog
+  })
+}
+
+function view (vnode) {
   return [
     m.trust('<!-- Server side rendering \\o/ -->'),
     m('h1', 'Ohh, another page'),
     m('p', 'try to realod and look to the response'),
     m('a', {
       href: '/',
-      config: m.route
+      oncreate: m.route.link
     }, 'back to home page'),
-    m('p', scope.myDog && ('My dogs name is ' + scope.myDog.name) || '')
-  ];
+    vnode.state.myDog && m(dogInfo, {
+      myDog: vnode.state.myDog
+    })
+  ]
 }
 
 module.exports = {
-  controller: controller,
+  oninit: oninit,
   view: view
-};
+}

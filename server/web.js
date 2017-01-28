@@ -1,13 +1,13 @@
-'use strict';
+'use strict'
 
-var express = require('express');
-var routes = require('../client/routes');
-var each = require('lodash').each;
-var render = require('mithril-node-render');
+var express = require('express')
+var routes = require('../client/routes')
+var toHtml = require('mithril-node-render')
+var m = require('mithril')
 
-var app = express();
+var app = express()
 
-function base(content) {
+function baseHtml (content) {
   return [
     '<!doctype html>',
     '<html>',
@@ -20,27 +20,25 @@ function base(content) {
     content,
     '</body>',
     '</html>'
-  ].join('');
+  ].join('')
 }
 
-each(routes, function(module, route) {
-  app.get(route, function(req, res, next) {
-    res.type('html');
-    function send(scope) {
-      res.end(base(render(module.view(scope))));
-      scope && scope.onunload && scope.onunload();
-    }
-    if (module.controller.length < 2) { //sync, response imedeatly
-      return send(module.controller(req.params));
-    }
-    // async, call with callback
-    return module.controller(req.params, function(err, scope) {
-      if (err) {
-        return next(err);
-      }
-      send(scope);
-    });
-  });
-});
+const identity = a => a
 
-module.exports = app;
+Object.keys(routes).map(function (route) {
+  const module = routes[route]
+  const onmatch = module.onmatch || (() => module)
+  const render = module.render || identity
+  app.get(route, function (req, res, next) {
+    res.type('html')
+    Promise.resolve()
+      .then(() => m(onmatch(req.params, req.url) || 'div', req.params))
+      .then(render)
+      .then(toHtml)
+      .then(baseHtml)
+      .then(res.send.bind(res))
+      .catch(next)
+  })
+})
+
+module.exports = app

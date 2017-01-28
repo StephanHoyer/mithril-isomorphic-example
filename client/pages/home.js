@@ -1,22 +1,18 @@
-'use strict';
+'use strict'
 
-var m = require('mithril');
+var m = require('mithril')
 
-function controller() {
-}
-
-function view() {
+function view () {
   return [
     m('h1', 'mithril-isomorphic-example'),
     m('p', 'yes, it works'),
     m('a', {
-      href: '/second-page',
-      config: m.route
+      href: '/second-page/123',
+      oncreate: m.route.link
     }, 'second page')
-  ];
+  ]
 }
 
 module.exports = {
-  controller: controller,
   view: view
-};
+}

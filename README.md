@@ -4,7 +4,9 @@
 
 This is an example of an express-based isomorphic mithril application.
 
-It utilizes the architecture descibed in [this](https://gist.github.com/StephanHoyer/bddccd9e159828867d2a) post. It can be used as a starting point for you isomorphic mithril-based application.
+It utilizes the architecture descibed in
+[this](https://gist.github.com/StephanHoyer/bddccd9e159828867d2a) post. It can
+be used as a starting point for your isomorphic mithril-based application.
 
 # usage
 
@@ -21,24 +23,25 @@ If you want to run it in production mode (JS minification) just run `NODE_ENV=pr
 
 It's a pretty standard mithril application. For packaging und dependencies we use [browserify](http://browserify.org/). The routes are defined in the `routes.js`. We added two routes for demonstration.
 
-There are two specialities you have to take care: 
+There are two specialities you have to take care:
 
-### controllers 
+### async data for rendering
 
-If the page requires asyncronous data in order to be rendered completely and/or the rendering relies on url-based parameters you have to add to paramters to the controller signature, as demonstrated in the `second`-controller:
+Rendering async data is demonstrated in the second page. As you can see the
+route parameters come as `vnode.attrs` just like in browser mithril app. In order to render async you have to
+return a promise in the `oninit`. If this is resolved for all `oninit`s, the
+response will be sent to the client.
 
 ```javascript
-function controller(params, done) {
-  var scope = {};
-  store.load('dog', 123).then(function(dog) {
-    scope.myDog = dog;
-    done && done(null, scope);
-  });
-  return scope;
+function oninit(vnode) {
+  return store.load('dog', 123).then(function(dog) {
+    vnode.state.myDog = dog
+  })
 }
 ```
 
-The `params`-object contains the request parameters when run on server side. So if your url looks like `/user/:id` there will be a `params.id` that contains the parameter. The second argument is a callback function that has to be invoked, if all data is successfully fetched. Beware that you check the presence of the callback before calling it since it's only available in server environment.
+You can also use route resolver for this. We will add a third route that
+demonstrates this any time soon.
 
 ### store
 
@@ -48,7 +51,7 @@ The store supports four actions:
 
 * `store.load(type, id)` - fetches one model of given type by id - results in `GET`-request
 * `store.loadWhere(type, options)` - fetches a collection of models of given type - results in `GET`-request
-* `store.save(model)` - saves (creates/updatea) a model - results in `POST/PUT`-request
+* `store.save(model)` - saves (creates/updates) a model - results in `POST/PUT`-request
 * `store.destroy(model)` - deletes a model - results in `DELETE`-request
 
 models should have a `type` property to use the correct route.
