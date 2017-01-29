@@ -1,33 +1,33 @@
-'use strict';
+'use strict'
 
-var resources = require('../server/resources');
+var resources = require('../server/resources')
 
-function load(type, id) {
+function load (type, id) {
   if (!resources[type]) {
-    throw Error('Resource with type "' + type + '" does not exist');
+    throw Error('Resource with type "' + type + '" does not exist')
   }
-  return resources[type].get(id);
+  return resources[type].get(id)
 }
 
-function loadWhere(type, query) {
+function loadWhere (type, query) {
   if (!resources[type]) {
-    throw Error('Resource with type "' + type + '" does not exist');
+    throw Error('Resource with type "' + type + '" does not exist')
   }
-  return resources[type].query(query);
+  return resources[type].query(query)
 }
 
-function remove(model) {
+function remove (model) {
   if (!model.type) {
-    throw new Error('model has no type, remove not possible');
+    throw new Error('model has no type, remove not possible')
   }
-  return resources[model.type].destroy(model.id);
+  return resources[model.type].destroy(model.id)
 }
 
-function save(model) {
+function save (model) {
   if (!model.type) {
-    throw new Error('model has no type, save not possible');
+    throw new Error('model has no type, save not possible')
   }
-  return resources[model.type].save(model);
+  return resources[model.type].save(model)
 }
 
 module.exports = {
@@ -35,4 +35,4 @@ module.exports = {
   load: load,
   remove: remove,
   loadWhere: loadWhere
-};
+}

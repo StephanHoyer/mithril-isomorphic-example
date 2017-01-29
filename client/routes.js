@@ -1,9 +1,9 @@
-'use strict';
+'use strict'
 
-var home = require('./pages/home');
-var second = require('./pages/second');
+var home = require('./pages/home')
+var second = require('./pages/second')
 
 module.exports = {
   '/': home,
-  '/second-page': second
-};
+  '/second-page/:id': second
+}

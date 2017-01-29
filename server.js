@@ -1,24 +1,25 @@
-'use strict';
+'use strict'
+require('mithril/test-utils/browserMock')(global)
 
-var express = require('express');
-var bodyParser = require('body-parser');
-var web = require('./server/web');
-var rest = require('./server/rest');
-var compression = require('compression');
-var browserify = require('browserify-middleware');
+var express = require('express')
+var bodyParser = require('body-parser')
+var web = require('./server/web')
+var rest = require('./server/rest')
+var compression = require('compression')
+var browserify = require('browserify-middleware')
 
-var app = express();
+var app = express()
 
 app.use(bodyParser.urlencoded({
   extended: true
-}));
-app.use(bodyParser.raw());
-app.use(bodyParser.json());
-app.use(compression());
-app.use(web);
-app.use('/api/v1', rest);
-app.get('/index.js', browserify('./client/index.js'));
+}))
+app.use(bodyParser.raw())
+app.use(bodyParser.json())
+app.use(compression())
+app.use(web)
+app.use('/api/v1', rest)
+app.get('/index.js', browserify('./client/index.js'))
 
-var port = process.env.PORT || 8000;
-console.log('Server is now running on port ' + port);
-app.listen(port);
+var port = process.env.PORT || 8000
+console.log('Server is now running on port ' + port)
+app.listen(port)
