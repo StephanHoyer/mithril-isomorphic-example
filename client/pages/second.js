@@ -1,7 +1,7 @@
 'use strict'
 
 var m = require('mithril')
-var store = require('../../store')
+var apiUrl = 'http://localhost:8000/api/v1/'
 
 var dogInfo = {
   type: 'cat',
@@ -15,23 +15,23 @@ var dogInfo = {
 }
 
 function oninit (vnode) {
-  return store.load('dog', vnode.attrs.id).then(function (dog) {
+  return m.request(apiUrl + 'dog/' + vnode.attrs.id).then(function (dog) {
     vnode.state.myDog = dog
   })
 }
 
 function view (vnode) {
   return [
-    m.trust('<!-- Server side rendering \\o/ -->'),
     m('h1', 'Ohh, another page'),
+    m('h2', process.browser ? 'browser rendered' : 'Server rendered'),
     m('p', 'try to realod and look to the response'),
     m('a', {
       href: '/',
       oncreate: m.route.link
     }, 'back to home page'),
-    vnode.state.myDog && m(dogInfo, {
+    vnode.state.myDog ? m(dogInfo, {
       myDog: vnode.state.myDog
-    })
+    }) : m('p', 'loading')
   ]
 }
 

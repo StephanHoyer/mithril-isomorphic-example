@@ -13,7 +13,7 @@ be used as a starting point for your isomorphic mithril-based application.
 1. Clone the repo
 2. `cd` into it
 3. run `npm install`
-4. run `node server`
+4. run `npm start`
 
 If you want to run it in production mode (JS minification) just run `NODE_ENV=production node server`
 
@@ -21,20 +21,20 @@ If you want to run it in production mode (JS minification) just run `NODE_ENV=pr
 
 ## frontend
 
-It's a pretty standard mithril application. For packaging und dependencies we use [browserify](http://browserify.org/). The routes are defined in the `routes.js`. We added two routes for demonstration.
-
-There are two specialities you have to take care:
+It's a pretty standard mithril application. For packaging und dependencies we use
+[browserify](http://browserify.org/). The routes are defined in the `routes.js`.
+We added two routes for demonstration.
 
 ### async data for rendering
 
 Rendering async data is demonstrated in the second page. As you can see the
-route parameters come as `vnode.attrs` just like in browser mithril app. In order to render async you have to
-return a promise in the `oninit`. If this is resolved for all `oninit`s, the
-response will be sent to the client.
+route parameters come as `vnode.attrs` just like in browser mithril app. In order
+to render async you have to return a promise in the `oninit`. If this is 
+resolved for all `oninit`s, the response will be sent to the client.
 
 ```javascript
 function oninit(vnode) {
-  return store.load('dog', 123).then(function(dog) {
+  return m.request(apiUrl + 'dog/' + 123).then(function(dog) {
     vnode.state.myDog = dog
   })
 }
@@ -43,37 +43,23 @@ function oninit(vnode) {
 You can also use route resolver for this. We will add a third route that
 demonstrates this any time soon.
 
-### store
-
-The app sets up an REST-server for providing the data. For conveniance we set up a `store`-module that wraps the `m.request` and talks to the REST-API. Currently only GET-by-id is implemented on server side. There are already routes for the other actions. For more info on this refer to the backend section.
-
-The store supports four actions:
-
-* `store.load(type, id)` - fetches one model of given type by id - results in `GET`-request
-* `store.loadWhere(type, options)` - fetches a collection of models of given type - results in `GET`-request
-* `store.save(model)` - saves (creates/updates) a model - results in `POST/PUT`-request
-* `store.destroy(model)` - deletes a model - results in `DELETE`-request
-
-models should have a `type` property to use the correct route.
-
 ## backend
 
 ### REST-API
 
-The app contains a basic REST-API based on `express`. It talks to the backend version of the `store`. The API of the backend and frontend `store` should be identical at any time.
+The app contains a basic REST-API based on `express`.
 
-The API is bound to the base route `api/v1/`. This can of cause be changed in the `server/web.js` (also change it on the client side in `store/client.js`). The routes of the models are related to the `type`-property of the models:
-
-e. G. `/api/v1/user/123` fetches and returns the user with `id = 123`.
-
-### store
-
-The server version of `store` has the same API as the client version. However, it requires resources to fetch from. These are defined in the `/server/resources.js`. Currently there is only one resource defined. For this resource currently only the `get-by-id` is defined. The resources should be an object where the keys refer to the appropriate `model.type`-property. 
-
-In a real application you should add your ORM/ODM in this place. As you might spot the store requires promises in order to work.
+The API is bound to the base route `api/v1/`. This can of cause be changed in
+the `server/web.js` (also change it on the client side). It's currently just one
+possible route ('/dog/:id'). In a real application you probably make a config
+variable with your API-base URL so you can change it in one point.
 
 # conclusion
 
-This project should give you a basic idea how to build a isomorphic app with express and mithril. We try to extract as much as possible to modules but stopped at this point, since more abstraction would result in more complicated code. This project is there to be adapted to your special use case. The code-base is pretty small and hopefully understandable.
+This project should give you a basic idea how to build a isomorphic app with
+express and mithril. We try to extract as much as possible to modules but stopped
+at this point, since more abstraction would result in more complicated code. This
+project is there to be adapted to your special use case. The code-base is pretty
+small and hopefully understandable.
 
 Fell free to drop us a line in the gitter chat if you have any questions.

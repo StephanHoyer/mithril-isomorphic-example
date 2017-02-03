@@ -1,5 +1,6 @@
 'use strict'
 require('mithril/test-utils/browserMock')(global)
+global.window.XMLHttpRequest = require('w3c-xmlhttprequest').XMLHttpRequest
 
 var express = require('express')
 var bodyParser = require('body-parser')
