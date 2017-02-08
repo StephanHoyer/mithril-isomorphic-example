@@ -1,6 +1,7 @@
 'use strict'
 
 var m = require('mithril')
+var baseView = require('../baseView')
 
 function view () {
   return [
@@ -14,5 +15,5 @@ function view () {
 }
 
 module.exports = {
-  view: view
+  view: baseView(view)
 }

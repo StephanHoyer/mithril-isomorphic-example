@@ -2,6 +2,7 @@
 
 var m = require('mithril')
 var apiUrl = 'http://localhost:8000/api/v1/'
+var baseView = require('../baseView')
 
 var dogInfo = {
   type: 'cat',
@@ -17,6 +18,9 @@ var dogInfo = {
 function oninit (vnode) {
   return m.request(apiUrl + 'dog/' + vnode.attrs.id).then(function (dog) {
     vnode.state.myDog = dog
+    vnode.state.getTitle = function () {
+      return dog.name
+    }
   })
 }
 
@@ -37,5 +41,5 @@ function view (vnode) {
 
 module.exports = {
   oninit: oninit,
-  view: view
+  view: baseView(view)
 }
