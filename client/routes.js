@@ -1,9 +1,7 @@
 'use strict'
 
-var home = require('./pages/home')
-var second = require('./pages/second')
-
 module.exports = {
-  '/': home,
-  '/second-page/:id': second
+  '/': require('./pages/home'),
+  '/second-page/:id': require('./pages/second'),
+  '/with-route-resolver/:id': require('./pages/with-route-resolver')
 }

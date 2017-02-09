@@ -10,7 +10,11 @@ function view () {
     m('a', {
       href: '/second-page/123',
       oncreate: m.route.link
-    }, 'second page')
+    }, 'second page'),
+    m('a', {
+      href: '/with-route-resolver/999',
+      oncreate: m.route.link
+    }, 'with route resolver')
   ]
 }
 
