@@ -2,14 +2,17 @@
 
 var m = require('mithril')
 
-var fallbackTitle = 'isomorphic mithril application'
+function getTitle (vnode) {
+  if (vnode.state.getTitle) {
+    return vnode.state.getTitle()
+  }
+  return 'isomorphic mithril application'
+}
 
 module.exports = function (view) {
   if (process.browser) {
     return function (vnode) {
-      if (vnode.state.getTitle) {
-        document.title = vnode.state.getTitle()
-      }
+      document.title = getTitle(vnode)
       return view(vnode)
     }
   }
@@ -18,7 +21,7 @@ module.exports = function (view) {
       m('!doctype[html]'),
       m('html[lang=en]', [
         m('head', [
-          m('title', vnode.state.getTitle() || fallbackTitle),
+          m('title', getTitle(vnode)),
           m('meta[charset=utf-8]'),
           m('script[src=/index.js]')
         ])
