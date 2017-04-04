@@ -1,7 +1,7 @@
 'use strict'
 
 var m = require('mithril')
-var apiUrl = '/api/v1/'
+var apiUrl = 'http://localhost:8000/api/v1/'
 var baseView = require('../baseView')
 
 var dogInfo = {
