@@ -17,7 +17,6 @@
     "express": "4.11.0",
     "mithril": "1.1.1",
     "mithril-node-render": "2.1.0",
-    "mithril-node-render": "2.1.0",
     "w3c-xmlhttprequest": "2.1.2"
   },
   "devDependencies": {
