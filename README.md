@@ -21,7 +21,7 @@ If you want to run it in production mode (JS minification) just run `NODE_ENV=pr
 
 ## frontend
 
-It's a pretty standard mithril application. For packaging und dependencies we use
+It's a pretty standard mithril application. For packaging and dependencies we use
 [browserify](http://browserify.org/). The routes are defined in the `routes.js`.
 We added two routes for demonstration.
 
