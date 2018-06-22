@@ -20,7 +20,7 @@
     "w3c-xmlhttprequest": "2.1.2"
   },
   "devDependencies": {
-    "brfs": "^1.2.0",
+    "brfs": "^2.0.0",
     "browserify": "^14.1.0"
   }
 }
