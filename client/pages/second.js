@@ -28,7 +28,7 @@ function view (vnode) {
   return [
     m('h1', 'Ohh, another page'),
     m('h2', process.browser ? 'browser rendered' : 'Server rendered'),
-    m('p', 'try to realod and look to the response'),
+    m('p', 'try to reload and look to the response'),
     m('a', {
       href: '/',
       oncreate: m.route.link
