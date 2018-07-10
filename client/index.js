@@ -1,12 +1,12 @@
 'use strict'
 
-var domready = require('domready')
-var m = require('mithril')
+const domready = require('domready')
+const m = require('mithril')
 
-var routes = require('./routes')
+const routes = require('./routes')
 
 m.route.prefix('')
 
-domready(function () {
+domready(function() {
   m.route(document.body, '/', routes)
 })

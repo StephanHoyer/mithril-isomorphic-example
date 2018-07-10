@@ -11,9 +11,11 @@ var browserify = require('browserify-middleware')
 
 var app = express()
 
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+)
 app.use(bodyParser.raw())
 app.use(bodyParser.json())
 app.use(compression())
