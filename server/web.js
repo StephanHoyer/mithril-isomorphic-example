@@ -11,14 +11,14 @@ Object.keys(routes).map(function (route) {
   const module = routes[route]
   const onmatch = module.onmatch || (() => module)
   const render = module.render || (a => a)
-  app.get(route, function (req, res, next) {
+  app.get(route, async function (req, res, next) {
     res.type('html')
-    Promise.resolve()
-      .then(() => m(onmatch(req.params, req.url) || 'div', req.params))
-      .then(render)
-      .then(toHtml)
-      .then(res.send.bind(res))
-      .catch(next)
+    try {
+      const rootNode = render(m(await onmatch(req.params, req.url) || 'div', req.params))
+      res.send(await toHtml(rootNode))
+    } catch (err) {
+      next(err)
+    }
   })
 })
 
