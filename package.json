@@ -13,7 +13,7 @@
     "body-parser": "1.19.0",
     "browserify-middleware": "8.0.0",
     "compression": "1.7.4",
-    "domready": "1.0.7",
+    "domready": "1.0.8",
     "express": "5.0.0-alpha.6",
     "mithril": "2.0.4",
     "mithril-node-render": "3.0.0",
