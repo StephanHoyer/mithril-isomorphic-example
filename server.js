@@ -1,6 +1,10 @@
 'use strict'
-require('mithril/test-utils/browserMock')(global)
-global.window.XMLHttpRequest = require('w3c-xmlhttprequest').XMLHttpRequest
+
+global.document = global.window = {
+  FormData: a => a,
+  XMLHttpRequest: require('w3c-xmlhttprequest').XMLHttpRequest,
+}
+global.requestAnimationFrame = undefined
 
 var express = require('express')
 var bodyParser = require('body-parser')

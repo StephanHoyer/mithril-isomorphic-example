@@ -1,6 +1,7 @@
 'use strict'
 
 const m = require('mithril')
+const Link = m.route.Link
 
 const pauseFor = ms => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -12,10 +13,9 @@ module.exports = {
         return [
           m('div', 'route: ', route, JSON.stringify(params)),
           m(
-            'a',
+            Link,
             {
               href: '/',
-              oncreate: m.route.link,
             },
             'back to home page'
           ),

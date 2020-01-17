@@ -3,6 +3,7 @@
 const m = require('mithril')
 const apiUrl = 'http://localhost:8000/api/v1/'
 const baseView = require('../baseView')
+const Link = m.route.Link
 
 const dogInfo = {
   type: 'dog',
@@ -18,10 +19,15 @@ const dogInfo = {
   },
 }
 
-async function oninit(vnode) {
-  const dog = await m.request(`${apiUrl}dog/${vnode.attrs.id}`)
-  vnode.state.myDog = dog
-  vnode.state.getTitle = () => dog.name
+function noop() {}
+
+function oninit(vnode, waitFor = noop) {
+  waitFor(
+    m.request(`${apiUrl}dog/${vnode.attrs.id}`).then(dog => {
+      vnode.state.myDog = dog
+      vnode.state.getTitle = () => dog.name
+    })
+  )
 }
 
 function view(vnode) {
@@ -30,10 +36,9 @@ function view(vnode) {
     m('h2', process.browser ? 'browser rendered' : 'Server rendered'),
     m('p', 'try to reload and look to the response'),
     m(
-      'a',
+      Link,
       {
         href: '/',
-        oncreate: m.route.link,
       },
       'back to home page'
     ),
