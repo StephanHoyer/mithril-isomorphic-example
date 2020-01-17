@@ -11,7 +11,7 @@
   "repository": "https://github.com/StephanHoyer/mithril-isomorphic-example",
   "dependencies": {
     "body-parser": "1.19.0",
-    "browserify-middleware": "8.0.0",
+    "browserify-middleware": "8.1.1",
     "compression": "1.7.4",
     "domready": "1.0.7",
     "express": "5.0.0-alpha.6",
