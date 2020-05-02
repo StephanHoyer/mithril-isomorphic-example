@@ -14,7 +14,7 @@
     "browserify-middleware": "8.0.0",
     "compression": "1.7.4",
     "domready": "1.0.7",
-    "express": "5.0.0-alpha.6",
+    "express": "5.0.0-alpha.8",
     "mithril": "2.0.4",
     "mithril-node-render": "3.0.0",
     "w3c-xmlhttprequest": "2.1.3"
