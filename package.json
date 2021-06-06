@@ -17,7 +17,7 @@
     "express": "5.0.0-alpha.6",
     "mithril": "2.0.4",
     "mithril-node-render": "3.0.0",
-    "w3c-xmlhttprequest": "2.1.3"
+    "w3c-xmlhttprequest": "3.0.3"
   },
   "devDependencies": {
     "brfs": "2.0.2",
