@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "brfs": "2.0.2",
-    "browserify": "16.2.3",
+    "browserify": "16.5.2",
     "prettier": "2.4.1"
   }
 }
