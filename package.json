@@ -16,7 +16,7 @@
     "domready": "1.0.8",
     "express": "5.0.0-alpha.8",
     "mithril": "2.0.4",
-    "mithril-node-render": "3.0.0",
+    "mithril-node-render": "3.0.2",
     "w3c-xmlhttprequest": "3.0.3"
   },
   "devDependencies": {
