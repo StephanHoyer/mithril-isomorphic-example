@@ -1,8 +1,8 @@
 'use strict'
 
 global.document = global.window = {
-  FormData: a => a,
-  XMLHttpRequest: require('w3c-xmlhttprequest').XMLHttpRequest,
+  FormData: (a) => a,
+  XMLHttpRequest: require('@aminya/xmlhttprequest').XMLHttpRequest,
 }
 global.requestAnimationFrame = undefined
 
